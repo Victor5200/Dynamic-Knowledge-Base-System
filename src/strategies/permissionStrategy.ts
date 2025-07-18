@@ -5,7 +5,7 @@ export interface PermissionStrategy {
 }
 
 export class AdminStrategy implements PermissionStrategy {
-    canPerform(): boolean { return true; }
+    canPerform(action: Action): boolean { return true; }
 }
 
 export class EditorStrategy implements PermissionStrategy {
@@ -21,7 +21,7 @@ export class ViewerStrategy implements PermissionStrategy {
 }
 
 export class PermissionContext {
-    constructor(private strategy: PermissionStrategy) {}
+    constructor(private readonly strategy: PermissionStrategy) {}
 
     can(action: Action): boolean {
         return this.strategy.canPerform(action);

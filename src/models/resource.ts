@@ -1,7 +1,10 @@
 import { BaseEntity } from './baseEntity';
 
-export type ResourceType = 'video' | 'article' | 'pdf';
-
+export enum ResourceType {
+    Video = 'video',
+    Article = 'article',
+    PDF = 'pdf',
+}
 export class Resource extends BaseEntity {
     topicId: string;
     url: string;

@@ -24,7 +24,7 @@ export class UserService {
     }
 
     update(id: string, newContent: string): Topic | undefined {
-        const user = db.topics.get(id);
+        const user = db.users.get(id);
         if (!user) return undefined;
 
         db.topics.set(id, user);

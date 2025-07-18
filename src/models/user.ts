@@ -1,6 +1,10 @@
 import { BaseEntity } from './baseEntity';
 
-export type UserRole = 'Admin' | 'Editor' | 'Viewer';
+export enum UserRole {
+    Admin = 'Admin',
+    Editor = 'Editor',
+    Viewer = 'Viewer',
+}
 
 export class User extends BaseEntity {
     name: string;
