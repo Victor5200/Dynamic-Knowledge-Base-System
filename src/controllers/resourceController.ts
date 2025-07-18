@@ -9,6 +9,13 @@ const service = new ResourceService();
  *   post:
  *     summary: Create a new resource
  *     tags: [Resources]
+ *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *     requestBody:
  *       required: true
  *       content:
@@ -41,6 +48,13 @@ export const createResource = (req: Request, res: Response) => {
  *   get:
  *     summary: Get all resources
  *     tags: [Resources]
+ *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *     responses:
  *       200:
  *         description: List of resources
@@ -56,6 +70,12 @@ export const getAllResources = (req: Request, res: Response) => {
  *     summary: Get a resource by ID
  *     tags: [Resources]
  *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *       - name: id
  *         in: path
  *         required: true
@@ -79,6 +99,12 @@ export const getResourceById = (req: Request, res: Response) => {
  *     summary: Update a resource
  *     tags: [Resources]
  *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *       - name: id
  *         in: path
  *         required: true
@@ -116,6 +142,12 @@ export const updateResource = (req: Request, res: Response) => {
  *     summary: Delete a resource
  *     tags: [Resources]
  *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *       - name: id
  *         in: path
  *         required: true

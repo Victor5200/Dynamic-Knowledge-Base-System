@@ -9,6 +9,13 @@ const service = new TopicService();
  *   post:
  *     summary: Create a new topic
  *     tags: [Topics]
+ *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *     requestBody:
  *       required: true
  *       content:
@@ -40,6 +47,13 @@ export const createTopic = (req: Request, res: Response) => {
  *   get:
  *     summary: Get all topics
  *     tags: [Topics]
+ *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *     responses:
  *       200:
  *         description: List of topics
@@ -55,6 +69,12 @@ export const getAllTopics = (req: Request, res: Response) => {
  *     summary: Get a topic by ID
  *     tags: [Topics]
  *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *       - name: id
  *         in: path
  *         required: true
@@ -78,6 +98,12 @@ export const getTopicById = (req: Request, res: Response) => {
  *     summary: Update a topic
  *     tags: [Topics]
  *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *       - name: id
  *         in: path
  *         required: true
@@ -110,6 +136,12 @@ export const updateTopic = (req: Request, res: Response) => {
  *     summary: Delete a topic
  *     tags: [Topics]
  *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *       - name: id
  *         in: path
  *         required: true
@@ -134,6 +166,12 @@ export const deleteTopic = (req: Request, res: Response) => {
  *     summary: Get a topic and its subtopics recursively
  *     tags: [Topics]
  *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *       - name: id
  *         in: path
  *         required: true

@@ -10,6 +10,12 @@ const service = new TopicService();
  *     summary: Find the shortest path between two topics
  *     tags: [Topics]
  *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *       - name: fromId
  *         in: query
  *         required: true

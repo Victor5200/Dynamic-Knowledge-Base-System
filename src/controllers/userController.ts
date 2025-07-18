@@ -9,6 +9,13 @@ const service = new UserService();
  *   post:
  *     summary: Create a new user
  *     tags: [Users]
+ *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *     requestBody:
  *       required: true
  *       content:
@@ -39,6 +46,13 @@ export const createUser = (req: Request, res: Response) => {
  *   get:
  *     summary: Get all users
  *     tags: [Users]
+ *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *     responses:
  *       200:
  *         description: List of users
@@ -54,6 +68,12 @@ export const getAllUsers = (req: Request, res: Response) => {
  *     summary: Get a user by ID
  *     tags: [Users]
  *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *       - name: id
  *         in: path
  *         required: true
@@ -77,6 +97,12 @@ export const getUserById = (req: Request, res: Response) => {
  *     summary: Delete a user
  *     tags: [Users]
  *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *       - name: id
  *         in: path
  *         required: true
@@ -94,13 +120,20 @@ export const deleteUser = (req: Request, res: Response) => {
         : res.status(404).json({ error: 'User not found' });
 };
 
+
 /**
  * @swagger
- * /topics/{id}:
+ * /users/{id}:
  *   put:
  *     summary: Update a User
  *     tags: [Users]
  *     parameters:
+ *       - name: x-user-role
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User role required for authorization
  *       - name: id
  *         in: path
  *         required: true
