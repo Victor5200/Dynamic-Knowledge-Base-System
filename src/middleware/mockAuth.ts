@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { UserRole } from '../models/User';
+import { UserRole } from '../models/user';
 
 declare global {
     namespace Express {
@@ -10,6 +10,11 @@ declare global {
 }
 
 export const mockAuth = (req: Request, res: Response, next: NextFunction) => {
+    // Bypass authentication for API documentation endpoint
+    if (req.path.startsWith('/api-docs')) {
+        return next();
+    }
+    // Mock authentication logic
     const role = req.header('x-user-role') as UserRole;
 
     if (!role || !['Admin', 'Editor', 'Viewer'].includes(role)) {

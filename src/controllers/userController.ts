@@ -93,3 +93,40 @@ export const deleteUser = (req: Request, res: Response) => {
         ? res.json({ message: 'Deleted' })
         : res.status(404).json({ error: 'User not found' });
 };
+
+/**
+ * @swagger
+ * /topics/{id}:
+ *   put:
+ *     summary: Update a User
+ *     tags: [Users]
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *                 enum: [Admin, Editor, Viewer]
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ *       404:
+ *         description: User not found
+ */
+export const updateUser = (req: Request, res: Response) => {
+    const user = service.update(req.params.id, req.body.content);
+    user ? res.json(user) : res.status(404).json({ error: 'Topic not found' });
+};

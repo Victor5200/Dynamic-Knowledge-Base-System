@@ -64,6 +64,12 @@ Install dependencies:
 npm install
 ```
 
+### 🏃‍♂️ Building the Application
+Build the application:
+```bash
+npm run build
+```
+
 ### 🏃‍♂️ Running the Application
 Start the server:
 ```bash

@@ -1,4 +1,4 @@
-import { Topic } from '../models/Topic';
+import { Topic } from '../models/topic';
 import { db } from '../utils/database';
 import { v4 as uuidv4 } from 'uuid';
 

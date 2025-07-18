@@ -1,4 +1,4 @@
-import { BaseEntity } from './BaseEntity';
+import { BaseEntity } from './baseEntity';
 import { TopicVersionFactory } from '../factories/topicFactory';
 
 export interface TopicVersion {

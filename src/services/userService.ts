@@ -1,6 +1,7 @@
-import { User, UserRole } from '../models/User';
+import { User, UserRole } from '../models/user';
 import { db } from '../utils/database';
 import { v4 as uuidv4 } from 'uuid';
+import {Topic} from "../models/topic";
 
 export class UserService {
     create(name: string, email: string, role: UserRole): User {
@@ -20,5 +21,13 @@ export class UserService {
 
     delete(id: string): boolean {
         return db.users.delete(id);
+    }
+
+    update(id: string, newContent: string): Topic | undefined {
+        const user = db.topics.get(id);
+        if (!user) return undefined;
+
+        db.topics.set(id, user);
+        return user;
     }
 }

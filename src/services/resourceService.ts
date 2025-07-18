@@ -1,4 +1,4 @@
-import { Resource, ResourceType } from '../models/Resource';
+import { Resource, ResourceType } from '../models/resource';
 import { db } from '../utils/database';
 import { v4 as uuidv4 } from 'uuid';
 
