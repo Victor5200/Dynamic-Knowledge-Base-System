@@ -1,38 +1,32 @@
 import request from 'supertest';
 import express, {NextFunction, Request, Response} from 'express';
 import resourceRoutes from '../../src/routes/resourceRoutes';
-import {UserRole} from "../models/user";
+import { UserRole } from '../../src/models/user';
+import { mockAuth } from '../../src/middleware/mockAuth';
+import {ResourceType} from "../models/resource";
 
-jest.mock('../../src/middleware/authorization', () => ({
-    authorize: jest.fn((req: Request, res: Response, next: NextFunction) => {
-        req = { ...req, user: { id: '1', role: UserRole.Admin } };
-        if (typeof next === 'function') {
-            next();
-        }
-    }),
-}));
+const app = express();
+app.use(express.json());
+app.use(mockAuth);
+app.use('/resources', resourceRoutes);
 
 jest.mock('../../src/services/resourceService', () => ({
     ResourceService: jest.fn().mockImplementation(() => ({
         create: jest.fn(() => ({
             id: '1',
             topicId: '123',
-            url: 'http://example.com',
+            url: 'https://example.com/resource1',
             description: 'Example resource',
-            type: 'link',
+            type: ResourceType.Video,
         })),
         getAll: jest.fn(() => [
-            { id: '1', topicId: '123', url: 'http://example.com', description: 'Example resource', type: 'link' },
+            { id: '1', topicId: '123', url: 'http://example.com', description: 'Example resource', type: ResourceType.Video },
         ]),
-        getById: jest.fn((id) => (id === '1' ? { id, topicId: '123', url: 'http://example.com', description: 'Example resource', type: 'link' } : null)),
-        update: jest.fn((id) => (id === '1' ? { id, url: 'http://updated.com', description: 'Updated resource', type: 'link' } : null)),
+        getById: jest.fn((id) => (id === '1' ? { id, topicId: '123', url: 'http://example.com', description: 'Example resource', type: ResourceType.Video } : null)),
+        update: jest.fn((id) => (id === '1' ? { id, topicId: '123', url: 'http://updated.com', description: 'Updated resource', type: ResourceType.Video } : null)),
         delete: jest.fn((id) => id === '1'),
     })),
 }));
-
-const app = express();
-app.use(express.json());
-app.use('/resources', resourceRoutes);
 
 describe('Resource Controller Integration Tests', () => {
     test('POST /resources - should create a new resource', async () => {
@@ -40,9 +34,9 @@ describe('Resource Controller Integration Tests', () => {
             .post('/resources')
             .send({
                 topicId: '123',
-                url: 'http://example.com',
+                url: 'https://example.com/resource1',
                 description: 'Example resource',
-                type: 'link',
+                type: ResourceType.Video,
             })
             .set('x-user-role', 'Admin');
 
@@ -50,11 +44,65 @@ describe('Resource Controller Integration Tests', () => {
         expect(response.body).toEqual({
             id: '1',
             topicId: '123',
-            url: 'http://example.com',
+            url: 'https://example.com/resource1',
             description: 'Example resource',
-            type: 'link',
+            type: ResourceType.Video,
         });
     });
 
-    // Additional tests for GET, PUT, DELETE
+
+    test('GET /resources - should retrieve all resources', async () => {
+        const response = await request(app)
+            .get('/resources')
+            .set('x-user-role', 'Viewer');
+
+        expect(response.status).toBe(200);
+        expect(response.body).toEqual([
+            { id: '1', topicId: '123', url: 'http://example.com', description: 'Example resource', type: ResourceType.Video },
+        ]);
+    });
+
+    test('GET /resources/:id - should retrieve a resource by ID', async () => {
+        const response = await request(app)
+            .get('/resources/1')
+            .set('x-user-role', 'Viewer');
+
+        expect(response.status).toBe(200);
+        expect(response.body).toEqual({
+            id: '1',
+            topicId: '123',
+            url: 'http://example.com',
+            description: 'Example resource',
+            type: ResourceType.Video,
+        });
+    });
+
+    test('PUT /resources/:id - should update a resource', async () => {
+        const response = await request(app)
+            .put('/resources/1')
+            .send({
+                topicId: '123',
+                url: 'http://updated.com',
+                description: 'Updated resource',
+                type: ResourceType.Video,
+            })
+            .set('x-user-role', 'Editor');
+
+        expect(response.status).toBe(200);
+        expect(response.body).toEqual({
+            id: '1',
+            topicId: '123',
+            url: 'http://updated.com',
+            description: 'Updated resource',
+            type: ResourceType.Video,
+        });
+    });
+
+    test('DELETE /resources/:id - should delete a resource', async () => {
+        const response = await request(app)
+            .delete('/resources/1')
+            .set('x-user-role', 'Admin');
+
+        expect(response.status).toBe(200);
+    });
 });

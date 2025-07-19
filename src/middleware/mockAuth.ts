@@ -18,6 +18,7 @@ export const mockAuth = (req: Request, res: Response, next: NextFunction) => {
     const role = req.header('x-user-role') as UserRole;
 
     if (!role || !['Admin', 'Editor', 'Viewer'].includes(role)) {
+        console.log(`Invalid or missing x-user-role header: ${role}`);
         return res.status(400).json({ error: 'Invalid or missing x-user-role header' });
     }
 
