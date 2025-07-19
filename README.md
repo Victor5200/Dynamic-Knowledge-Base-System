@@ -1,5 +1,9 @@
 # Dynamic Knowledge Base System
 
+![CI](https://github.com/Victor5200/Dynamic-Knowledge-Base-System/actions/workflows/ci.yml/badge.svg)
+![Security Audit](https://github.com/<usuario>/<repositorio>/actions/workflows/<nome-do-arquivo>.yml/badge.svg)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Victor5200/Dynamic-Knowledge-Base-System)
+
 ## 📌 Objective
 
 This project is a **RESTful API** for a **Dynamic Knowledge Base System**. It manages interconnected topics and resources with **version control**, **user roles**, and **permissions**. The system demonstrates **advanced object-oriented programming concepts**, **design patterns**, and **algorithms**, while maintaining **high code quality** and **testing standards**.
