@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Victor5200/Dynamic-Knowledge-Base-System/compare/v1.0.0...v1.0.1) (2025-07-19)
+
+
+### Bug Fixes
+
+* running test before build ([476d2e4](https://github.com/Victor5200/Dynamic-Knowledge-Base-System/commit/476d2e452e4434a89d0317e64ff56a4e47886f2c))
+
 # 1.0.0 (2025-07-19)
 
 
