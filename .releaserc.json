@@ -11,5 +11,6 @@
       "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
     }],
     "@semantic-release/github"
-  ]
+  ],
+  "repositoryUrl": "https://github.com/Victor5200/Dynamic-Knowledge-Base-System.git"
 }
