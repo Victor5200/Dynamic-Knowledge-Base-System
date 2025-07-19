@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/Victor5200/Dynamic-Knowledge-Base-System/compare/v1.0.1...v1.0.2) (2025-07-19)
+
+
+### Bug Fixes
+
+* fixing badge for security audit ([7424435](https://github.com/Victor5200/Dynamic-Knowledge-Base-System/commit/7424435b2ca0809b4c9d524001b16301b54add8e))
+
 ## [1.0.1](https://github.com/Victor5200/Dynamic-Knowledge-Base-System/compare/v1.0.0...v1.0.1) (2025-07-19)
 
 
