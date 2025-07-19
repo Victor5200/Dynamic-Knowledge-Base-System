@@ -1,7 +1,7 @@
 # Dynamic Knowledge Base System
 
 ![CI](https://github.com/Victor5200/Dynamic-Knowledge-Base-System/actions/workflows/ci.yml/badge.svg)
-![Security Audit](https://github.com/<usuario>/<repositorio>/actions/workflows/<nome-do-arquivo>.yml/badge.svg)
+![Security Audit](https://github.com/Victor5200/Dynamic-Knowledge-Base-System/actions/workflows/security.yml/badge.svg)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Victor5200/Dynamic-Knowledge-Base-System)
 
 ## 📌 Objective
